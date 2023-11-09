@@ -4,29 +4,43 @@ This repository contains the backend API for AbslanX, a personal professional we
 
 # Key Features:
 
-RESTful API: Designed following REST principles to ensure scalable and maintainable architecture.
-Spring Boot Framework: Leverages Spring Boot for its powerful dependency injection, security, and configuration management.
-Authentication and Authorization: Secure endpoints with JWT-based authentication to manage admin access.
-Data Management: Interfaces with MongoDB for efficient storage and retrieval of content and user data.
-Integration with Social Media: Facilitates the synchronization of content from external social media platforms.
-Scalability and Performance: Optimized for performance with a focus on scalable solutions for future growth.
+RESTful API: Designed following REST principles to ensure scalable and maintainable architecture.  
+
+Spring Boot Framework: Leverages Spring Boot for its powerful dependency injection, security, and configuration management. 
+
+Authentication and Authorization: Secure endpoints with JWT-based authentication to manage admin access.  
+
+Data Management: Interfaces with MongoDB for efficient storage and retrieval of content and user data.  
+
+Integration with Social Media: Facilitates the synchronization of content from external social media platforms.  
+
+Scalability and Performance: Optimized for performance with a focus on scalable solutions for future growth.  
 
 # Technology Stack:
 
-Spring Boot (Java)
-MongoDB
-JWT for authentication
-Maven for build automation
-Additional libraries and frameworks as required
+Spring Boot (Java)  
+
+MongoDB  
+
+JWT for authentication  
+
+Maven for build automation  
+
+Additional libraries and frameworks as required  
 
 # Project Status:
 
-Initial Setup - In Progress
-API Development
-Database Integration
-Authentication Implementation
-Testing and Debugging
-Deployment
+Initial Setup - In Progress  
+
+API Development  
+
+Database Integration  
+
+Authentication Implementation  
+
+Testing and Debugging  
+
+Deployment  
 
 This backend API is a critical component of the AbslanX ecosystem, working in tandem with the AbslanX Frontend to deliver a seamless user experience. It's designed with best practices in mind, ensuring reliability and efficiency.
 
