@@ -30,9 +30,8 @@ Additional libraries and frameworks as required
 
 # Project Status:
 
-Demo 1 posted on YouTube!
-    
-    [![Demo 1](https://img.youtube.com/vi/55B1g0JV7DA/0.jpg)](https://www.youtube.com/watch?v=55B1g0JV7DA)
+[Demo 1 posted on YouTube!](https://www.youtube.com/watch?v=55B1g0JV7DA)
+
 
 This backend API is a critical component of the AbslanX ecosystem, working in tandem with the AbslanX Frontend to deliver a seamless user experience. It's designed with best practices in mind, ensuring reliability and efficiency.
 
