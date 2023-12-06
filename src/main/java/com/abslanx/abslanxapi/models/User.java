@@ -1,5 +1,7 @@
 package com.abslanx.abslanxapi.models;
 
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -46,35 +48,50 @@ public class User {
     @MinAge(value = 15, message = "You must be 15 years or older")
     private LocalDate dateOfBirth;
     
-    private String gender;
-
     // Location Information
+    @Pattern(regexp = "^[a-zA-Z\\s,.'-]{2,}$", message = "Invalid city name")
     private String city;
+
+    @Pattern(regexp = "^[a-zA-Z\\s,.'-]{2,}$", message = "Invalid state name")
     private String state;
+
+    @Pattern(regexp = "^[a-zA-Z\\s,.'-]{2,}$", message = "Invalid country name")
     private String country;
 
+
     // Professional Information
+    @Size(max = 100, message = "Occupation can't be longer than 100 characters")
     private String occupation;
 
 
     // Additional Information
+    @Size(max = 500, message = "Biography can't be longer than 500 characters")
     private String biography;
-    private String instagramUrl;
-    private String xUrl;
-    private String tumblrUrl;
-    private String tiktokUrl;
-    private String otherUrl;
-    private String profilePictureURL;
 
-    // Preferences and Settings
-    private String language;
-    private String timeZone;
-    private Set<String> accountPrivacySettings;
+    @Pattern(regexp = "^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$", message = "Invalid URL")
+    private String instagramUrl;
+
+    @Pattern(regexp = "^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$", message = "Invalid URL")
+    private String xUrl;
+
+    @Pattern(regexp = "^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$", message = "Invalid URL")
+    private String tumblrUrl;
+
+    @Pattern(regexp = "^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$", message = "Invalid URL")
+    private String tiktokUrl;
+
+    @Pattern(regexp = "^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?$", message = "Invalid URL")
+    private String otherUrl;
+
+    private String profilePictureURL;
 
     // Role and Permissions
     private Set<String> roles;
 
     // Audit Fields
+    @PastOrPresent(message = "Created date can't be in the future")
     private LocalDate createdAt;
+
+    @PastOrPresent(message = "Updated date can't be in the future")
     private LocalDate updatedAt;
 }
