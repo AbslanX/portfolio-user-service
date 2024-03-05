@@ -1,8 +1,12 @@
-# AbslanX Backend API
+# AbslanX Portfolio Web Application
 
-This repository contains the backend API for AbslanX, a personal professional website designed to showcase a portfolio of creative work, including blogs, artwork, photography, and videos. The API is responsible for managing all server-side logic, data handling, and integration with various services.
+A personal, professional website designed to showcase a portfolio of creative work, including blogs, artwork, photography, and videos. 
 
-# Key Features:
+## User-Service API
+
+This repository contains the backend user service API for AbslanX. The API is responsible for managing all user server-side logic, data handling, and integration with various services.
+
+# Key Project Features:
 
 RESTful API: Designed following REST principles to ensure scalable and maintainable architecture.  
 
