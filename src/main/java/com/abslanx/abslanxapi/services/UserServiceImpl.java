@@ -2,6 +2,7 @@ package com.abslanx.abslanxapi.services;
 
 import com.abslanx.abslanxapi.models.AuthenticationResponse;
 import com.abslanx.abslanxapi.models.User;
+import com.abslanx.abslanxapi.models.UserResponseDTO;
 import com.abslanx.abslanxapi.repositories.UserRepository;
 import com.abslanx.abslanxapi.security.JwtUtil;
 import com.abslanx.abslanxapi.utilities.CustomPasswordEncoder;
@@ -31,12 +32,35 @@ public class UserServiceImpl implements UserService{
     private JwtUtil jwtUtil;
 
     @Override
-    public User saveUser(User user) {
+    public UserResponseDTO saveUser(User user) {
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
         user.setCreatedAt(LocalDate.now());
         user.setUpdatedAt(LocalDate.now());
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+        return mapUserToUserResponseDTO(savedUser);
+    }
+
+    private UserResponseDTO mapUserToUserResponseDTO(User savedUser) {
+        UserResponseDTO dto = new UserResponseDTO();
+        dto.setEmail(savedUser.getEmail());
+        dto.setId(savedUser.getId());
+        dto.setCity(savedUser.getCity());
+        dto.setCountry(savedUser.getCountry());
+        dto.setBiography(savedUser.getBiography());
+        dto.setOccupation(savedUser.getOccupation());
+        dto.setFirstName(savedUser.getFirstName());
+        dto.setLastName(savedUser.getLastName());
+        dto.setInstagramUrl(savedUser.getInstagramUrl());
+        dto.setState(savedUser.getState());
+        dto.setUsername(savedUser.getUsername());
+        dto.setDateOfBirth(savedUser.getDateOfBirth());
+        dto.setOtherUrl(savedUser.getOtherUrl());
+        dto.setXUrl(savedUser.getXUrl());
+        dto.setTiktokUrl(savedUser.getTiktokUrl());
+        dto.setTumblrUrl(savedUser.getTumblrUrl());
+        dto.setProfilePictureURL(savedUser.getProfilePictureURL());
+        return dto;
     }
 
     @Override
