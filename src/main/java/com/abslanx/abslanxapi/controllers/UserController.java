@@ -1,6 +1,7 @@
 package com.abslanx.abslanxapi.controllers;
 
 import com.abslanx.abslanxapi.models.User;
+import com.abslanx.abslanxapi.models.UserResponseDTO;
 import com.abslanx.abslanxapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/users/save")
-    public User saveUser(@RequestBody User user){
+    public UserResponseDTO saveUser(@RequestBody User user){
         return userService.saveUser(user);
     }
 
