@@ -1,5 +1,6 @@
 package com.abslanx.abslanxapi.controllers;
 
+import com.abslanx.abslanxapi.models.AuthenticationResponse;
 import com.abslanx.abslanxapi.models.User;
 import com.abslanx.abslanxapi.models.UserResponseDTO;
 import com.abslanx.abslanxapi.security.JwtUtil;
@@ -15,15 +16,17 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.server.ResponseStatusException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(controllers = UserController.class, excludeAutoConfiguration = {SecurityAutoConfiguration.class, SecurityFilterAutoConfiguration.class})
 @AutoConfigureMockMvc(addFilters = false)
@@ -92,4 +95,25 @@ public class UserControllerTest {
                         .content(newUserJson))
                 .andExpect(status().isInternalServerError());
     }
+    @Test
+    void shouldCreateAuthenticationToken() throws Exception {
+        User user = new User();
+        user.setUsername("username");
+        user.setPassword("password");
+
+        String token = "mockToken";
+        ResponseEntity responseEntity = ResponseEntity.ok(new AuthenticationResponse(token));
+
+        when(userService.createAuthenticationToken(any(User.class))).thenReturn(responseEntity);
+
+        String userJson = new ObjectMapper().writeValueAsString(user);
+
+        mockMvc.perform(post("/users/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(userJson))
+                .andExpect(status().isOk())
+                .andExpect(content().string(new ObjectMapper().writeValueAsString(new AuthenticationResponse(token))));
+
+    }
+
 }
